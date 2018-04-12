@@ -1,0 +1,170 @@
+Created by PLY version 3.9 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BIGGEROREQOP
+    COMMENT
+    INTNUM
+    SMALLEROREQOP
+    FLOATINPOINTNUM
+    NEWLINE
+    ERROR
+
+Grammar
+
+Rule 0     S' -> file
+Rule 1     file -> instructions
+Rule 2     instructions -> instructions instruction
+Rule 3     instructions -> instruction ;
+Rule 4     instruction -> assignment_instruction
+Rule 5     instruction -> print_instruction
+Rule 6     instruction -> return_instruction
+Rule 7     instruction -> break_instruction
+Rule 8     instruction -> continue_instruction
+Rule 9     instruction -> for_instruction
+Rule 10    instruction -> while_instruction
+Rule 11    instruction -> choice_instruction
+Rule 12    break_instruction -> BREAK
+Rule 13    continue_instruction -> CONTINUE
+Rule 14    return_instruction -> RETURN expression
+Rule 15    print_instruction -> PRINT print_expressions ;
+Rule 16    print_expressions -> print_expressions print_expression
+Rule 17    print_expressions -> print_expression
+Rule 18    print_expression -> STRING
+Rule 19    print_expression -> expression
+Rule 20    expression -> bin_expression
+Rule 21    expression -> un_expression
+Rule 22    expression -> constant
+Rule 23    expression -> matrix_init_fun
+Rule 24    matrix_init_fun -> ZEROS ( expression )
+Rule 25    matrix_init_fun -> ONES ( expression )
+Rule 26    matrix_init_fun -> EYE ( expression )
+Rule 27    expression -> ID
+Rule 28    expression -> const
+Rule 29    expression -> ( expression )
+Rule 30    expression -> expression + expression
+Rule 31    expression -> expression - expression
+Rule 32    expression -> expression * expression
+Rule 33    expression -> expression / expression
+Rule 34    expression -> expression < expression
+Rule 35    expression -> expression > expression
+Rule 36    expression -> expression SMALLEROP expression
+Rule 37    expression -> expression BIGGEROP expression
+Rule 38    expression -> expression NOTEQOP expression
+Rule 39    expression -> expression EQOP expression
+Rule 40    expression -> expression DOTADD expression
+Rule 41    expression -> expression DOTSUB expression
+Rule 42    expression -> expression DOTMUL expression
+Rule 43    expression -> expression DOTDIV expression
+Rule 44    constant -> FLOAT
+Rule 45    constant -> INT
+Rule 46    constant -> matrix_initialization
+Rule 47    matrix_initialization -> [ expression ; expression ]
+Rule 48    matrix_initialization -> [ expression ]
+Rule 49    un_expression -> expression 
+Rule 50    un_expression -> - expression
+Rule 51    assign_instr -> variable assign_block expression
+Rule 52    assign_instr -> variable assign_block assign_instr
+Rule 53    variable -> ID
+Rule 54    variable -> ID [ matrix_reference ]
+Rule 55    matrix_reference -> locations expression
+Rule 56    matrix_reference -> expression
+Rule 57    operation_assignment -> ID ADDASSIGN expression ;
+Rule 58    operation_assignment -> ID SUBASSIGN expression ;
+Rule 59    operation_assignment -> ID MULASSIGN expression ;
+Rule 60    operation_assignment -> ID DIVASSIGN expression ;
+Rule 61    while_instr -> WHILE ( expression ) instruction
+Rule 62    instruction_block -> instruction
+Rule 63    instruction_block -> { instructions }
+Rule 64    if_instruction -> IF ( expression ) instruction_block
+Rule 65    if_instruction -> IF ( expression ) instruction_block ELSE instruction_block
+Rule 66    for_instruction -> FOR range instruction_block
+Rule 67    range -> ID = expression : expression
+
+Terminals, with rules where they appear
+
+                     : 49
+(                    : 24 25 26 29 61 64 65
+)                    : 24 25 26 29 61 64 65
+*                    : 32
++                    : 30
+-                    : 31 50
+/                    : 33
+:                    : 67
+;                    : 3 15 47 57 58 59 60
+<                    : 34
+=                    : 67
+>                    : 35
+ADDASSIGN            : 57
+BIGGEROP             : 37
+BIGGEROREQOP         : 
+BREAK                : 12
+COMMENT              : 
+CONTINUE             : 13
+DIVASSIGN            : 60
+DOTADD               : 40
+DOTDIV               : 43
+DOTMUL               : 42
+DOTSUB               : 41
+ELSE                 : 65
+EQOP                 : 39
+ERROR                : 
+EYE                  : 26
+FLOATINPOINTNUM      : 
+FOR                  : 66
+ID                   : 27 53 54 57 58 59 60 67
+IF                   : 64 65
+INTNUM               : 
+MULASSIGN            : 59
+NEWLINE              : 
+NOTEQOP              : 38
+ONES                 : 25
+PRINT                : 15
+RETURN               : 14
+SMALLEROP            : 36
+SMALLEROREQOP        : 
+SUBASSIGN            : 58
+WHILE                : 61
+ZEROS                : 24
+[                    : 47 48 54
+]                    : 47 48 54
+error                : 
+{                    : 63
+}                    : 63
+
+Nonterminals, with rules where they appear
+
+FLOAT                : 44
+INT                  : 45
+STRING               : 18
+assign_block         : 51 52
+assign_instr         : 52
+assignment_instruction : 4
+bin_expression       : 20
+break_instruction    : 7
+choice_instruction   : 11
+const                : 28
+constant             : 22
+continue_instruction : 8
+expression           : 14 19 24 25 26 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43 43 47 47 48 49 50 51 55 56 57 58 59 60 61 64 65 67 67
+file                 : 0
+for_instruction      : 9
+if_instruction       : 
+instruction          : 2 3 61 62
+instruction_block    : 64 65 65 66
+instructions         : 1 2 63
+locations            : 55
+matrix_init_fun      : 23
+matrix_initialization : 46
+matrix_reference     : 54
+operation_assignment : 
+print_expression     : 16 17
+print_expressions    : 15 16
+print_instruction    : 5
+range                : 66
+return_instruction   : 6
+un_expression        : 21
+variable             : 51 52
+while_instr          : 
+while_instruction    : 10
+
