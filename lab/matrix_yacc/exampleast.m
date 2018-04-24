@@ -1,0 +1,9 @@
+aaaa = 1;
+bbbb = 2;
+dddd = 3;
+eeee = zeros(5);
+ffff = ones(7);
+gggg = eye(9);
+float = 1.1;
+A = B'[1];
+y = a + b;

@@ -1,0 +1,31 @@
+ID1 = zeros(10);
+ID2 = ones(19.1e+2);
+ID3 = eye(aaa)
+print ID1;
+print    ( ID2 );
+if ID1 != ID2
+{
+ID1 <= ID2;
+}
+else
+{
+    print ID1;
+}
+while ID1' == ID1
+{
+    print(ID1[]);
+}
+for ID1
+{
+    if (ID1)
+    {
+        ID1 = ID1 .* ID2;
+        break;
+    }
+    else
+    {
+        continue;
+    }
+}
+
+return ID1;
