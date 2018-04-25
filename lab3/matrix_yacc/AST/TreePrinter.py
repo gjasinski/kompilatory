@@ -19,13 +19,11 @@ class TreePrinter:
 
     @addToClass(AstNode.Program)
     def printTree(self, indent=0):
-        # res = indent_char * indent
         res = self.instructions.printTree(indent)
         return res
 
     @addToClass(AstNode.InstructionsOpt1)
     def printTree(self, indent=0):
-        # res = indent_char * indent
         res = self.instructions.printTree(indent)
         return res
 
@@ -36,51 +34,43 @@ class TreePrinter:
 
     @addToClass(AstNode.Instructions)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.instructions.printTree(indent + 0)
-        res += self.instruction.printTree(indent + 0)
+        res = self.instructions.printTree(indent)
+        res += self.instruction.printTree(indent)
         return res
 
     @addToClass(AstNode.Instruction)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.instruction.printTree(indent + 0)
+        res = self.instruction.printTree(indent)
         return res
 
     @addToClass(AstNode.AssigmentInstruction)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.assigment.printTree(indent + 0)
+        res = self.assigment.printTree(indent)
         return res
 
     @addToClass(AstNode.Conditional)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.conditional.printTree(indent + 0)
+        res = self.conditional.printTree(indent)
         return res
 
     @addToClass(AstNode.Compound)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.compound.printTree(indent + 0)
+        res = self.compound.printTree(indent)
         return res
 
     @addToClass(AstNode.PrintInstr)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.printInstr.printTree(indent + 0)
+        res = self.printInstr.printTree(indent)
         return res
 
     @addToClass(AstNode.Iteration)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.iteration.printTree(indent + 0)
+        res = self.iteration.printTree(indent)
         return res
 
     @addToClass(AstNode.Jump)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.jump.printTree(indent + 0)
+        res = self.jump.printTree(indent)
         return res
 
     @addToClass(AstNode.Assigment)
@@ -94,6 +84,7 @@ class TreePrinter:
     def printTree(self, indent=0):
         res = indent_char * indent + 'IF' + '\n'
         res += self.condition.printTree(indent + 1)
+        res += indent_char * indent + 'THEN' + '\n'
         res += self.instructions.printTree(indent + 1)
         return res
 
@@ -101,6 +92,7 @@ class TreePrinter:
     def printTree(self, indent=0):
         res = indent_char * indent + 'IF' + '\n'
         res += self.condition.printTree(indent + 1)
+        res += indent_char * indent + 'THEN' + '\n'
         res += self.instructions.printTree(indent + 1)
         res += indent_char * indent + 'ELSE' + '\n'
         res += self.else_instructions.printTree(indent + 1)
@@ -108,22 +100,17 @@ class TreePrinter:
 
     @addToClass(AstNode.CompoundInstr)
     def printTree(self, indent=0):
-        #todo tutaj moze???????
-        # res = indent_char * indent + 'a' +self.instr1 + '\n'
-        res = self.instr2.printTree(indent + 0)
+        res = self.instr2.printTree(indent)
         return res
 
     @addToClass(AstNode.PrintExpression)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.to_print.printTree(indent + 0)
+        res = self.to_print.printTree(indent)
         return res
 
 
     @addToClass(AstNode.PrintExpressions)
     def printTree(self, indent=0):
-        print(self.print_expressions)
-        print(self.print_expressions.printTree())
         res = indent_char * indent + self.print_expression + '\n'
         res += self.print_expressions.printTree(indent + 1)
         return res
@@ -145,7 +132,7 @@ class TreePrinter:
     @addToClass(AstNode.ReturnInstr)
     def printTree(self, indent=0):
         res = indent_char * indent
-        res += self.expression.printTree(indent + 0)
+        res += self.expression.printTree(indent)
         return res
 
     @addToClass(AstNode.ContinueBreak)
@@ -155,7 +142,6 @@ class TreePrinter:
 
     @addToClass(AstNode.PrimaryExpr)
     def printTree(self, indent=0):
-        # print(str(self.expr))
         if type(self.expr) is AstNode.Matrix:
             res = self.expr.printTree(indent)
         else:
@@ -164,34 +150,36 @@ class TreePrinter:
 
     @addToClass(AstNode.Postfix_expr_1)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr1.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
         return res
 
     @addToClass(AstNode.Postfix_expr_2)
     def printTree(self, indent=0):
-        res = indent_char * indent + self.expr2 + '\n'
+        res = indent_char * indent + "REF\n"
         res += self.expr1.printTree(indent + 1)
-        # res += self.expr2
+        res += self.expr2.printTree(indent + 1)
+        return res
+
+    @addToClass(AstNode.Postfix_expr_3)
+    def printTree(self, indent=0):
+        res = indent_char * indent + "TRANSPOSE\n"
+        res += self.expr1.printTree(indent + 1)
         return res
 
     @addToClass(AstNode.Unary_expr_1)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr1.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
         return res
 
     @addToClass(AstNode.Unary_expr_2)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr1.printTree(indent + 0)
-        res += self.expr2.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
+        res += self.expr2.printTree(indent)
         return res
 
     @addToClass(AstNode.Generic_expr_1)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr.printTree(indent + 0)
+        res = self.expr.printTree(indent)
         return res
 
     @addToClass(AstNode.Generic_expr_2)
@@ -209,43 +197,36 @@ class TreePrinter:
 
     @addToClass(AstNode.Matrix)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.matrix.printTree(indent + 0)
+        res = indent_char * indent + "MATRIX\n"
+        res += self.matrix.printTree(indent + 1)
         return res
 
     @addToClass(AstNode.MatrixOuter1)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr1.printTree(indent + 0)
-        res += self.expr2.printTree(indent + 0)
-        res += self.expr3
-        #.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
+        res += self.expr2.printTree(indent)
         return res
 
     @addToClass(AstNode.MatrixOuter2)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr1.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
         return res
 
     @addToClass(AstNode.MatrixInner_1)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr1.printTree(indent + 0)
-        res += self.expr2.printTree(indent + 0)
-        res += self.expr3.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
+        res += self.expr2.printTree(indent)
         return res
 
     @addToClass(AstNode.MatrixInner_2)
     def printTree(self, indent=0):
-        # res = indent_char * indent
-        res = self.expr1.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
         return res
 
     @addToClass(AstNode.MatrixElem)
     def printTree(self, indent=0):
-        res = indent_char * indent + str(self.elem) + '\n'
-        # res = self.elem.printTree(indent + 0)
+        res = indent_char * indent + "VECTOR\n"
+        res += self.elem.printTree(indent+1)
         return res
 
     @addToClass(AstNode.IteratorAssignment)
@@ -254,25 +235,21 @@ class TreePrinter:
         res += indent_char * indent + 'RANGE\n'
         res += self.expr2.printTree(indent + 1)
         res += self.expr3.printTree(indent + 1)
-        # res += + self.expr4
         return res
 
     @addToClass(AstNode.Expr_1)
     def printTree(self, indent=0):
-        res = self.expr1.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
         return res
 
     @addToClass(AstNode.Expr_2)
     def printTree(self, indent=0):
-        # res = indent_char * indent + self.expr1 + '\n'
-
-        res = self.expr1.printTree(indent + 0)
-        res += self.expr2.printTree(indent + 0)
+        res = self.expr1.printTree(indent)
+        res += self.expr2.printTree(indent)
         return res
 
     @addToClass(AstNode.Expr_3)
     def printTree(self, indent=0):
         res = indent_char * indent + self.expr1 + '\n'
-        # res = self.expr1.printTree(indent + 0)
         res += self.expr2.printTree(indent + 1)
         return res

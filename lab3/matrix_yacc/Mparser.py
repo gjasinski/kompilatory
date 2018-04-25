@@ -171,10 +171,14 @@ def p_postfix_expr_1(p):
 
 
 def p_postfix_expr_2(p):
-    """postfix_expr : postfix_expr '[' expr ']'
-                    | postfix_expr SINGLE_QUOTE
+    """postfix_expr : postfix_expr '[' expr ']'"""
+    p[0] = Postfix_expr_2(p[1], p[3])
+
+
+def p_postfix_expr_3(p):
+    """postfix_expr : postfix_expr SINGLE_QUOTE
     """
-    p[0] = Postfix_expr_2(p[1], p[2])
+    p[0] = Postfix_expr_3(p[1], p[2])
 
 
 def p_unary_expr_1(p):
@@ -290,7 +294,7 @@ def p_matrix_inner_2(p):
 
 def p_matrix_elem(p):
     """elem : expr"""
-    p[0] = MatrixElem(p[0])
+    p[0] = MatrixElem(p[1])
 
 
 def p_iterator_assignment(p):

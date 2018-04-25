@@ -189,6 +189,11 @@ class Postfix_expr_2(Node):
         self.expr1 = expr1
         self.expr2 = expr2
 
+class Postfix_expr_3(Node):
+    def __init__(self, expr1, expr2):
+        self.expr1 = expr1
+        self.expr2 = expr2
+
 
 class Unary_expr_1(Node):
     def __init__(self, expr1):
